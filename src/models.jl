@@ -6,7 +6,7 @@ end
 
 function Flux.train!(model::Model, X::Sample, Y::Sample, n::Integer)
     m = size(X.train, 2)
-    data = Vector{Tuple{Vector{Float64}, Vector{Float64}}}(undef, m)
+    data = Vector{Tuple{Vector{Float32}, Vector{Float32}}}(undef, m)
 
     for i in 1:m
         data[i] = (X.train[:, i], Y.train[:, i])
