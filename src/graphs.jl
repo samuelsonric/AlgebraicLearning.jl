@@ -83,6 +83,26 @@ function touwd(graph::AbstractFreeDiagram{<:Any, Tuple{Ob, Hom}}, n::Integer) wh
                 set_junction!(diagram, (box, port), w₂[i₂])
             end
         end
+
+        if v₁ == v₂
+            for w₁ in w
+                m₁ = length(w₁)
+    
+                name = (
+                    ob(graph, v₁),
+                    ob(graph, v₂),
+                    map(e -> hom(graph, e), w₁),
+                    [:id])
+
+            
+                box = add_box!(diagram, m₁; name)
+
+                for i₁ in 1:m₁
+                    port = i₁
+                    set_junction!(diagram, (box, port), w₁[i₁])
+                end
+            end
+        end
     end
 
     diagram
